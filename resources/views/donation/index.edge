@@ -1,0 +1,47 @@
+@layout('dashboard_layouts.index')
+    @section('content-header')
+        <h3>Donation</h3>
+    @endsection
+    @section('content')
+        
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>jenis donasi</th>
+                            <th>berita</th>
+                            <th>gambar</th>
+                            <th>category</th>
+                            <th>action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @each(donate in donation)
+                        <tr>
+                            <td> {{ ($loop.index + 1) }} </td>
+                            <td> {{ donate.jenis_donasi }} </td>
+                            <td> {{ donate.berita }} </td>
+                            <td> <img class="img-thumbnail" src="{{ assetsUrl('uploads/') }}{{ donate.gambar }}" width="100"> </td>
+                            <td> {{ donate.category.category }} </td>
+                            <td> 
+                                <form action=" {{ '/donation/' +  donate.id + '?_method=DELETE'}} " method="post">
+                                    {{ csrfField() }}
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>   
+                            </td>
+                        </tr>
+                        @endeach
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-md-10"></div>
+                    <div class="col-md-2">
+                        <a class="btn btn-primary" href=" {{ route('donation.create') }} ">Tambah data</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    @endsection

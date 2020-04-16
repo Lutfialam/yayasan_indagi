@@ -1,0 +1,18 @@
+@include('dashboard_layouts.header')
+    @include('dashboard_layouts.navbar')
+    @include('dashboard_layouts.sidebar')
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <section class="section">
+            <div class="section-header">
+                @!section('content-header')
+            </div>
+
+            <div class="section-body">
+                @!section('content')
+            </div>
+        </section>
+    </div>
+    
+@include('dashboard_layouts.footer')

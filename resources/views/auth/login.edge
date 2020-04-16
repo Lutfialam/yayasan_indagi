@@ -1,0 +1,22 @@
+@layout('auth.layout')
+
+  @section('content')
+  <div data-aos-duration="1000" data-aos="fade-left">
+    <h4 class="text-center">Login</h4>
+    <form action="{{ route('login.check') }}" method="POST">
+      {{ csrfField() }}
+      <div class="form-group">
+        <label>EMAIL</label>
+        <input type="email" class="form-control {{ hasErrorFor('email') ? 'is-invalid' : '' }}" name="email" placeholder="Masukkan Email">
+        {{ elIf('<span class="text-danger">$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
+      </div>
+      <div class="form-group">
+        <label>PASSWORD</label>
+        <input type="password" class="form-control {{ hasErrorFor('password') ? 'is-invalid' : '' }}" name="password" placeholder="Masukkan Password">
+        {{ elIf('<span class="text-danger">$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
+      </div>
+      <P>anda tidak memiliki akun? daftar <a href=" {{ route('register.index') }} ">disini</a> </P>
+      <button class="btn btn-primary btn-md btn-block" type="submit">LOGIN</button>
+    </form>
+  </div>
+  @endsection

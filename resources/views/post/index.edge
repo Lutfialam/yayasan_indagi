@@ -1,0 +1,62 @@
+@layout('dashboard_layouts.index')
+    @section('content-header')
+        <h3>Post</h3>
+    @endsection
+    @section('content')
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>judul</th>
+                            <th>isi_post</th>
+                            <th>category</th>
+                            <th>gambar</th>
+                            <th>action</th>
+                        </tr>
+                    </thead>
+                    <div class="col-md-12">
+
+                        <tbody>
+                            @each(post in post)
+                            <tr>
+                                <td> {{ ($loop.index + 1) }} </td>
+                                <td> {{ post.judul }} </td>
+                                <td> {{ post.isi_post }} </td>
+                                <td> {{ post.category.category }} </td>
+                                <td> <img class="img-thumbnail" src="{{ assetsUrl('uploads/') }}{{ post.gambar }}" width="100"> </td>
+                                <td width="20%" >
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <a class="btn btn-primary" href=" {{ route('post.detail_post', { url : post.url } ) }} " data-toggle="tooltip" data-placement="left" title="Detail"><i class="fas fa-info"></i></a>
+                                            </div>
+                                            <div class="col-md-4">    
+                                                <form action=" {{ '/post/' +  post.id + '?_method=DELETE'}} " method="post">
+                                                    {{ csrfField() }}
+                                                    <button type="submit" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i></button>
+                                                </form>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <a class="btn btn-warning" href=" {{ route('post.edit', { id : post.id } ) }} " data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pen"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        
+                                </td>
+                            </tr>
+                            @endeach
+                        </tbody>
+                    </div>
+                </table>
+                <div class="row mt-2">
+                    <div class="col-md-10">
+                    </div>
+                    <div class="col-md-2">
+                        <a href=" {{ route('post.create') }}  " class="btn btn-primary">Tambah Data</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endsection

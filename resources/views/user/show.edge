@@ -1,0 +1,27 @@
+@layout('dashboard_layouts.index')
+    @section('content-header')
+        <h3>Account information</h3>
+    @endsection
+    @section('content')
+            @each(user in users)
+                <div class="col-12 col-sm-12 col-lg-5 mt-5 pt-2">
+                    <div class="card profile-widget">
+                    <div class="profile-widget-header">                     
+                        <img alt="image" src=" {{ assetsUrl('avatar-1.png') }} " class="rounded-circle profile-widget-picture">
+                        <div class="profile-widget-items">
+                            <div class="profile-widget-item">
+                                <div class="profile-widget-item-label">Email</div>
+                                <div class="profile-widget-item-value"> {{ user.email }} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-widget-description pb-0">
+                        <div class="profile-widget-name"> {{ user.name }} <div class="text-muted d-inline font-weight-normal"><div class="slash"></div> {{ user.level }} </div></div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat.</p>
+                    </div>
+                </div>
+            @endeach
+    @endsection

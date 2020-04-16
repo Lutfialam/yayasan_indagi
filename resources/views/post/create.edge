@@ -1,0 +1,54 @@
+@layout('dashboard_layouts.index')
+    @section('content-header')
+        <h3>tambah data</h3>
+    @endsection
+    @section('content')
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="needs-validation" novalidate="" action=" {{ route('post.store') }} " method="post" enctype="multipart/form-data">
+                        {{ csrfField() }}
+                        <div class="form-group">
+                            <label>Judul</label>
+                            <input type="text" class="form-control" name="judul" placeholder="Example : Penyerahan dana bantuan sebesar Rp.100.000.000">
+                            {{ elIf('<span>$self</span>', getErrorFor('judul'), hasErrorFor('judul')) }}
+                            <div class="invalid-feedback">
+                                
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>isi post</label>
+                            <textarea name="isi_post" class="form-control" placeholder="Example : penyerahan sumbangan terkait bencana covid-19, untuk para warga yang tertekan ekonomi nya saat ini"></textarea>
+                            {{ elIf('<span>$self</span>', getErrorFor('isi_post'), hasErrorFor('isi_post')) }}
+                            <div class="invalid-feedback">
+                                
+                            </div>
+                        </div>
+                        <div class="section-title">Gambar</div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFile" name="gambar">
+                            <label class="custom-file-label" for="customFile">pilih gambar</label>
+                            {{ elIf('<span>$self</span>', getErrorFor('gambar'), hasErrorFor('gambar')) }}
+                        </div>
+                        <div class="section-title">Category</div>
+                            <div class="form-group">
+                                <select class="form-control select2" name="category_id">
+                                    <option value="" disabled selected>-- pilih category --</option>
+                                    @each(category in category)
+                                        <option value=" {{ category.id }} "> {{ category.category }} </option>
+                                    @endeach
+                                </select>
+                            </div>
+                        <div class="text-right">
+                            <button class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+    @endsection

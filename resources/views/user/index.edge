@@ -1,0 +1,44 @@
+@layout('dashboard_layouts.index')
+    @section('content-header')
+        <h3>User</h3>
+    @endsection
+    @section('content')
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>name</th>
+                            <th>email</th>
+                            <th>level</th>
+                            <th>action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @each(user in user)
+                        <tr>
+                            <td> {{ ($loop.index + 1) }} </td>
+                            <td> {{ user.name }} </td>
+                            <td> {{ user.email }} </td>
+                            <td> {{ user.level }} </td>
+                            <td>
+                                <form action=" {{ '/user/' +  user.id + '?_method=DELETE'}} " method="post">
+                                    {{ csrfField() }}
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endeach
+                    </tbody>
+                </table>
+                <div class="row mt-2">
+                    <div class="col-md-10">
+                    </div>
+                    <div class="col-md-2">
+                        <a href=" {{ route('user.create') }}  " class="btn btn-primary">Tambah Data</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endsection

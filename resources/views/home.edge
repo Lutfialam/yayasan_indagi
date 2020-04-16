@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Yayasan indagi </title>
+    {{ style('this') }}
+    {{ style('css/bootstrap.min') }}
+    {{ style('assets/css/components') }}
+    {{ style('assets/modules/fontawesome/css/all.min') }}
+    {{ style('assets/css/aos') }}
+
+</head>
+<body>
+    
+    {{--  header  --}}
+    <header class="background-home">
+        <div class="row">
+            <div class="container marl-20 mart-20">
+                <div class="col-md-1"></div>
+                <div data-aos-duration="1000" data-aos="fade-right">
+                    <div class="col-md-6 ml-mobile">
+                        <h1><span class="text-primary">Kepedulian</span><br>
+                            Anda <br> 
+                            Kebahagiaan <br>
+                            Mereka
+                        </h1>
+                        <a href=" {{ route('register.index') }} " class="btn btn-primary">
+                            jadi donatur yuk!
+                        </a>
+                        
+                    </div>
+                </div>
+                <div data-aos-duration="1000" data-aos="fade-right">
+                    <div class="col-md-5">
+                        <img src=" {{ assetsUrl('undraw_gifts_btw0.svg') }} " width="400">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    {{--  /header  --}}
+
+    {{--  main content  --}}
+    <main>
+        <div class="row">
+            <div class="container">
+                <div class="row">
+                    <div data-aos-duration="1000" data-aos="fade-right">
+                        <div class="col-md-6">
+                            <h3 class="text-center">Mari kita bantu saudara kita</h3>
+                            <p class="text-justify">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit natus nam optio consequuntur dolorem ex? Maiores officia error et asperiores commodi! Odio inventore ut est beatae. Illo voluptatem odit ea.</p>
+                        </div>
+                    </div>
+                    <div data-aos-duration="1000" data-aos="fade-up">
+                        <div class="col-md-6">
+                            <img src=" {{ assetsUrl('undraw_wallet_aym5.svg') }} " width="400">
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-5">
+                    <div data-aos-duration="1000" data-aos="fade-up">
+                        <div class="col-md-6">
+                            <img src=" {{ assetsUrl('undraw_welcome_3gvl.svg') }} " width="400">
+                        </div>
+                    </div>
+                    <div data-aos-duration="1000" data-aos="fade-right">
+                        <div class="col-md-6">
+                            <h2>Dengan berbagi kita dapat melihat mereka bahagia</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci impedit enim, architecto reprehenderit commodi laudantium sequi quibusdam eveniet fuga aliquid consequuntur doloribus praesentium dicta voluptas, expedita voluptates facilis qui dolorum!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-5 text-center">
+                    <div data-aos-duration="1000" data-aos="fade-down">
+                    <h2>Bagaimana caranya untuk menyumbang?</h2>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-10 col-lg-8 offset-lg-2">
+                        <div class="wizard-steps">
+                        <div class="wizard-step wizard-step-active"  id="cardClick1">
+                            <div class="wizard-step-icon">
+                            <i class="far fa-user"></i>
+                            </div>
+                            <div class="wizard-step-label">
+                            Buat akun
+                            </div>
+                        </div>
+                        <div class="wizard-step"  id="cardClick2">
+                            <div class="wizard-step-icon">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="wizard-step-label">
+                            Login
+                            </div>
+                        </div>
+                        <div class="wizard-step" id="cardClick3">
+                            <div class="wizard-step-icon">
+                                <i class="fas fa-donate"></i>
+                            </div>
+                            <div class="wizard-step-label">
+                            mulai donasi
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="row" id="1">
+                <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        @if(flashMessage('notification'))
+                            <div class="alert alert-success">{{ flashMessage('notification') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+                        <div class="card">
+                            <div class="card-body">
+                            <form action="{{ route('register.store') }}" method="POST">
+                                {{ csrfField() }}
+                                <div class="form-group">
+                                <label>NAMA LENGKAP</label>
+                                <input type="text" class="form-control {{ hasErrorFor('name') ? 'is-invalid' : '' }}" name="name" value="{{ old('name', '') }}" placeholder="Masukkan Nama Lengkap">
+                                {{ elIf('<span class="text-danger">$self</span>', getErrorFor('name'), hasErrorFor('name')) }}
+                                </div>
+                                <div class="form-group">
+                                <label>EMAIL</label>
+                                <input type="email" class="form-control {{ hasErrorFor('email') ? 'is-invalid' : '' }}" name="email" placeholder="Masukkan Email">
+                                {{ elIf('<span class="text-danger">$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
+                                </div>
+                                <div class="form-group">
+                                <label>PASSWORD</label>
+                                <input type="password" class="form-control {{ hasErrorFor('password') ? 'is-invalid' : '' }}" name="password" placeholder="Masukkan Password">
+                                {{ elIf('<span class="text-danger">$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
+                                </div>
+                                <button class="btn btn-primary btn-md btn-block" type="submit">REGISTER</button>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="2" style="display:none;">
+                <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <form action="{{ route('login.check') }}" method="POST">
+                            {{ csrfField() }}
+                            <div class="form-group">
+                              <label>EMAIL</label>
+                              <input type="email" class="form-control {{ hasErrorFor('email') ? 'is-invalid' : '' }}" name="email" placeholder="Masukkan Email">
+                              {{ elIf('<span class="text-danger">$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
+                            </div>
+                            <div class="form-group">
+                              <label>PASSWORD</label>
+                              <input type="password" class="form-control {{ hasErrorFor('password') ? 'is-invalid' : '' }}" name="password" placeholder="Masukkan Password">
+                              {{ elIf('<span class="text-danger">$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
+                            </div>
+                            <button class="btn btn-primary btn-md btn-block" type="submit">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="3" style="display:none;">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 text-center">
+                    <h3>Dan anda pun dapat menambahkan data donasi</h3>
+                    <img src=" {{ assetsUrl('undraw_done_a34v.svg') }} " width="500">
+                </div>
+            </div>
+
+            {{--  news activity  --}}
+            <div class="row pt-5">
+                <div class="container">
+                <h2 class="text-center">Aktifitas terbaru</h2>
+
+                @each(post in post)  
+                <div class="col-12 col-md-4 col-lg-4">
+                    <article class="article article-style-c">
+                        <div class="article-header">
+                            <div class="article-image" data-background="">
+                                <img src="uploads{{ assetsUrl(post.gambar) }}" width="100%">
+                            </div>
+                        </div>
+                            <div class="article-details">
+                                <div class="article-category"><a href="#"> {{ post.category.category }} </a> <div class="bullet"></div> <a href="#"> {{ post.created_at }} </a></div>
+                            <div class="article-title">
+                                <h2><a href="#"> {{ post.judul }} </a></h2>
+                            </div>
+                            <p> {{ post.isi_post }} </p>
+                            <div class="article-user">
+                                <a class="btn btn-primary" href=" {{ route('post.detail_post', { url : post.url } ) }} ">Detail</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                @endeach
+                
+            </div>
+            </div>
+            {{--  /news activity  --}}
+
+            {{--  news donation  --}}
+            <div class="row pt-5">
+                <div class="container">
+                <h2 class="text-center">Donasi terbaru</h2>
+
+                @each(donasi in donation)  
+                <div class="col-12 col-md-4 col-lg-4">
+                    <article class="article article-style-c">
+                        <div class="article-header">
+                            <div class="article-image" data-background="">
+                                <img src="uploads{{ assetsUrl(donasi.gambar) }}" width="100%">
+                            </div>
+                        </div>
+                            <div class="article-details">
+                                <div class="article-category"><a href="#"> {{ donasi.category.category }} </a> <div class="bullet"></div> <a href="#"> {{ donasi.created_at }} </a></div>
+                            <div class="article-title">
+                                <h2><a href="#"> {{ donasi.jenis_donasi }} </a></h2>
+                            </div>
+                            <p> {{ donasi.berita }} </p>
+                        </div>
+                    </article>
+                </div>
+                @endeach
+                
+            </div>
+            </div>
+            {{--  /news donation  --}}
+
+            {{--  other information  --}}
+
+            <div class="row">
+                <div class="container">
+                    <div class="col-md-12">
+                        <div data-aos-duration="1000" data-aos="fade-right">
+                        <h2 class="text-center">Other information</h2>
+                        </div>
+                        <div class="row">
+                            <div data-aos-duration="1000" data-aos="fade-up">
+                            <div class="col-md-6">
+                                <h4>untuk berdonasi melalui uang bisa langsung mengirimi melalui no rekening dibawah ini</h4>
+                                <ul>
+                                    <li>BCA : A/N yayasan indagi 2114 1123 xxxx</li>
+                                    <li>BNI : A/N yayasan indagi 2114 1123 xxxx</li>
+                                    <li>BNI : A/N yayasan indagi 2114 1123 xxxx</li>
+                                </ul>
+                                <h4>dan untuk barang bisa mendatanya melalui tombol dibawah ini</h4>
+                                <a href=" {{ route('login.index') }} " class="btn btn-primary">Login</a>
+                            </div>
+                            </div>
+                            <div data-aos-duration="1000" data-aos="fade-down">
+                            <div class="col-md-6">
+                                <img src=" {{ assetsUrl('undraw_online_information_4ui6.svg') }} " width="400">
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{--  /other information  --}}
+
+
+        </div>
+    </main>
+    {{--  /main content  --}}
+
+    {{--  footer  --}}
+    <div class="footer-home">
+        <div class="row">
+            <div class="container">
+                <div class="col-md-12">
+                    <div class="row mart-bg-footer">
+                        <div data-aos-duration="1000" data-aos="fade-right">      
+                            <div class="col-md-6">
+                                <h3 class="text-white">Lutfi Alamsyah</h3>
+                                <h3 class="text-white">XII TKJ 2</h3>
+                                <h3 class="text-white">SMK Al-Muhtadin kota depok</h3>
+                            </div>
+                        </div>
+                        <div data-aos-duration="1000" data-aos="fade-left">
+                            <div class="col-md-6">
+                                <h3 class="text-white">Hobby which is the future</h3>
+                                <p class="text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi eaque vitae, molestias repudiandae aut qui eius voluptatum provident enim perferendis sint tempore deleniti est quis deserunt nostrum non, nisi dolores!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="col-md-12">
+                    <h5 class="text-center text-white bottom-align-text">Lutfi Alamsyah 2020 </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{--  /footer  --}}
+    
+    {{ script('js/jquery.min') }}
+    {{ script('js/bootsrap.min') }}
+    {{ script('js/script') }}
+    {{ script('assets/js/aos') }}
+    <script>
+        AOS.init();
+    </script>
+    <script>
+        if ($('#1').hasClass('active')) {
+            $('#2').hide()
+            $('#3').hide()
+        }
+        $('#cardClick1').on('click',function(){
+            $('#1').show().siblings('div')
+            $('#cardClick1').addClass("wizard-step-active").siblings().removeClass('wizard-step-active')
+            $('#2').hide()
+            $('#3').hide()
+        });
+        $('#cardClick2').on('click',function(){
+            $('#2').show().siblings('div')
+            $('#cardClick2').addClass("wizard-step-active").siblings().removeClass('wizard-step-active')
+            $('#1').hide()
+            $('#3').hide()
+        });
+        $('#cardClick3').on('click',function(){
+            $('#3').show().siblings('div')
+            $('#cardClick3').addClass("wizard-step-active").siblings().removeClass('wizard-step-active')
+            $('#2').hide()
+            $('#1').hide()
+        });
+    </script>
+</body>
+</html>

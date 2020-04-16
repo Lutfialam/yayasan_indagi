@@ -1,0 +1,31 @@
+@layout('dashboard_layouts.index')
+    @section('content-header')
+        <h3>tambah data</h3>
+    @endsection
+    @section('content')
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="needs-validation" novalidate="" action=" {{ route('category.store') }} " method="post">
+                        {{ csrfField() }}
+                        <div class="form-group">
+                            <label>category</label>
+                            <input type="text" class="form-control" name="category">
+                            {{ elIf('<span>$self</span>', getErrorFor('category'), hasErrorFor('category')) }}
+                            <div class="invalid-feedback">
+                                
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <button class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+    
+    @endsection

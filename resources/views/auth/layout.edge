@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>Indonesia berbagi</title>
+
+  {{ style('assets/modules/bootstrap/css/bootstrap.min') }}
+  {{ style('assets/modules/fontawesome/css/all.min') }}
+  {{ style('assets/modules/select2/dist/css/select2.min.css') }}
+  {{ style('assets/css/style') }}
+  {{ style('assets/css/aos') }}
+  {{ style('assets/css/components') }}
+  {{ style('this') }}
+
+</head>
+<body class="background-login">
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="container">
+        <div class="col-md-12">
+  
+          <div class="row mart-18">
+            <div class="col-md-5">
+              @if(flashMessage('notification'))
+              <div class="alert alert-success">{{ flashMessage('notification') }}</div>
+              @endif
+              <div class="card">
+                <div class="card-body">
+                  @!section('content')
+                </div>
+              </div>
+            </div>
+            <div data-aos-duration="1000" data-aos="fade-down">
+              <div class="col-md-6 pl-5 ml-6">
+                <img class="mobile-style" src=" {{ assetsUrl('undraw_sign_in_e6hj.svg') }} " width="400">
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- General JS Scripts -->
+{{ script('assets/modules/jquery.min') }}
+{{ script('assets/modules/popper') }}
+{{ script('assets/modules/tooltip') }}
+{{ script('assets/modules/bootstrap/js/bootstrap.min') }}
+{{ script('assets/modules/nicescroll/jquery.nicescroll.min') }}
+{{ script('assets/modules/moment.min') }}
+{{ script('assets/js/stisla') }}
+{{ script('assets/js/aos') }}
+{{ script('assets/modules/select2/dist/js/select2.full.min') }}
+
+<!-- JS Libraies -->
+
+<!-- Page Specific JS File -->
+
+<!-- Template JS File -->
+{{ script('assets/js/scripts') }}
+{{ script('assets/js/custom') }}
+<script>
+  AOS.init();
+</script>
+</body>
+</html>

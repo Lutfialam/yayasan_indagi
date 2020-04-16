@@ -1,0 +1,11 @@
+REQUIREMENTS :
+- Nodejs >= 8.0.0
+- npm >= 3.0.0
+- git
+- AdonisCli command to install "npm 1 -g @adonisjs/cli"
+
+how to install
+- install dependecies with command "npm install"
+- make database yayasan_indagi
+- import database yayasan_indagi.sql
+- run app with command "Adonis serve --dev"
