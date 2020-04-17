@@ -30,10 +30,10 @@ Run the following command to run startup migrations.
 adonis migration:run
 ```
 ### Requirements
-Nodejs >= 8.0.0
-Mysql
-Adonisjs/cli
-intention to do it :)
+1. Nodejs >= 8.0.0
+2. Mysql
+3. Adonisjs/cli
+4. intention to do it :)
 
 ### Users
 You must create an account to enter the menu, or you login with admin account
