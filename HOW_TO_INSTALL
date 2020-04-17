@@ -1,0 +1,9 @@
+REQUIREMENT :
+- Nodejs 
+- AdonisCli 
+
+how to install
+- install dependecies with command "npm install"
+- make database yayasan_indagi
+- run migration with command "Adonis migration:run"
+- run app with command "Adonis serve --dev"

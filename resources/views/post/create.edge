@@ -27,7 +27,7 @@
                         </div>
                         <div class="section-title">Gambar</div>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile" name="gambar">
+                            <input type="file" class="custom-file-input" id="customFile" name="gambar" required>
                             <label class="custom-file-label" for="customFile">pilih gambar</label>
                             {{ elIf('<span>$self</span>', getErrorFor('gambar'), hasErrorFor('gambar')) }}
                         </div>

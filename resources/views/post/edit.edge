@@ -7,11 +7,13 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form class="needs-validation" novalidate="" action=" {{ route('post.update') }} " method="post">
+                    @each(pos in post)
+                      
+                    <form class="needs-validation" novalidate="" action=" {{ '/post/' +  pos.id + '?_method=PUT'}} " method="post" enctype="multipart/form-data">
                         {{ csrfField() }}
                         <div class="form-group">
                             <label>Judul</label>
-                            <input type="text" class="form-control" name="judul">
+                            <input type="text" class="form-control" name="judul" value=" {{ pos.judul }} ">
                             {{ elIf('<span>$self</span>', getErrorFor('judul'), hasErrorFor('judul')) }}
                             <div class="invalid-feedback">
                                 
@@ -19,21 +21,32 @@
                         </div>
                         <div class="form-group">
                             <label>Isi post</label>
-                            <input type="text" class="form-control" name="isi_post">
+                            <input type="text" class="form-control" name="isi_post" value=" {{ pos.isi_post }} ">
                             {{ elIf('<span>$self</span>', getErrorFor('isi_post'), hasErrorFor('isi_post')) }}
                             <div class="invalid-feedback">
                             </div>
                         </div>
+                        <div class="section-title">Gambar</div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFile" name="gambar" required>
+                            <label class="custom-file-label" for="customFile">pilih gambar</label>
+                            {{ elIf('<span>$self</span>', getErrorFor('gambar'), hasErrorFor('gambar')) }}
+                        </div>
                         <div class="section-title">Category</div>
                             <div class="form-group">
-                                <select class="form-control select2">
-                                    <option value="">Option 1</option>
+                                <select class="form-control select2" name="category_id">
+                                    <option value="" disabled selected>-- pilih category --</option>
+                                    @each(category in category)
+                                        <option value=" {{ category.id }} "> {{ category.category }} </option>
+                                    @endeach
                                 </select>
                             </div>
+                        <div class="text-right">
                         <div class="text-right">
                             <button class="btn btn-primary">Submit</button>
                         </div>
                     </form>
+                    @endeach
                 </div>
             </div>
             

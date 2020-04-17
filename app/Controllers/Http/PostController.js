@@ -136,9 +136,9 @@ class PostController {
     } else if (users.level !== 'Admin') {
       return response.redirect('/login')
     }
-
+    const category = await Category.all()
     const post = await Post.query().with('category').where('id', params.id).fetch()
-    return view.render('post.edit',{post:post.toJSON()})
+    return view.render('post.edit',{post:post.toJSON(), category:category.toJSON()})
   }
 
   /**
@@ -149,8 +149,8 @@ class PostController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
-    const post = Post.find(params.id)
+  async update ({ params, request, response, session }) {
+    const post = await Post.find(params.id)
     post.judul = request.input('judul')
     post.isi_post = request.input('isi_post')
     post.category_id = request.input('category_id')
@@ -185,6 +185,7 @@ class PostController {
     post.gambar = 'post' + newdate + "-" + image.clientName
 
     await post.save()
+    session.flash({ update: 'update Berhasil!' })
     return response.route('post.index')
   }
 
@@ -209,8 +210,9 @@ class PostController {
     return response.redirect('/post')
   }
 
-  async detail_post ({ params, request, response, view }) {
+  async detail_post ({ params, request, response, view, session }) {
     const post = await Post.query().where('url', params.url).with('category').fetch()
+    session.flash({ Delete: 'Delete Berhasil!' })
     return response.send(view.render('post.detail_post', {post:post.toJSON()}))
   }
 }
