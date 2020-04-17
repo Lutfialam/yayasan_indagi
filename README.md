@@ -29,3 +29,15 @@ Run the following command to run startup migrations.
 ```js
 adonis migration:run
 ```
+### Requirements
+Nodejs >= 8.0.0
+Mysql
+Adonisjs/cli
+intention to do it :)
+
+### Users
+You must create an account to enter the menu, or you login with admin account
+to get an admin account you have to import the sql file in the HOW_TO_INSTALL folde.
+Admin account : 
+  email : asd@asds.com
+  password : asdasdasd
